@@ -233,11 +233,23 @@ input:focus {
   background: #f8fafb;
   border: 1px solid #e0e7ec;
   border-radius: 8px;
+  cursor: pointer;
   display: flex;
   gap: 16px;
   justify-content: space-between;
   min-height: 78px;
   padding: 14px;
+}
+
+.category-item:hover {
+  background: #f1f6f8;
+  border-color: #b8c8d2;
+}
+
+.category-item:focus-visible {
+  border-color: #0f766e;
+  box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.14);
+  outline: none;
 }
 
 .category-item.selected {
@@ -246,12 +258,9 @@ input:focus {
 }
 
 .category-select {
-  background: transparent;
-  border: 0;
   color: inherit;
   display: grid;
   gap: 2px;
-  padding: 0;
   text-align: left;
 }
 

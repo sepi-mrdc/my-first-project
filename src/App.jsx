@@ -12,19 +12,123 @@ const defaultCategories = [
       { id: 'cheese', name: 'Cheese', quantity: 8 }
     ]
   },
-  { id: 'fruits', name: 'Fruits', products: [] },
-  { id: 'beverages', name: 'Beverages', products: [] },
-  { id: 'bakery', name: 'Bakery', products: [] },
-  { id: 'vegetables', name: 'Vegetables', products: [] },
-  { id: 'meat-seafood', name: 'Meat & Seafood', products: [] },
-  { id: 'frozen-foods', name: 'Frozen Foods', products: [] },
-  { id: 'pantry-staples', name: 'Pantry Staples', products: [] },
-  { id: 'snacks', name: 'Snacks', products: [] },
-  { id: 'condiments-sauces', name: 'Condiments & Sauces', products: [] },
-  { id: 'household-supplies', name: 'Household Supplies', products: [] },
-  { id: 'cleaning-products', name: 'Cleaning Products', products: [] },
-  { id: 'personal-care', name: 'Personal Care', products: [] },
-  { id: 'office-supplies', name: 'Office Supplies', products: [] }
+  {
+    id: 'fruits',
+    name: 'Fruits',
+    products: [
+      { id: 'apples', name: 'Apples', quantity: 24 },
+      { id: 'bananas', name: 'Bananas', quantity: 30 },
+      { id: 'oranges', name: 'Oranges', quantity: 20 }
+    ]
+  },
+  {
+    id: 'beverages',
+    name: 'Beverages',
+    products: [
+      { id: 'bottled-water', name: 'Bottled Water', quantity: 48 },
+      { id: 'orange-juice', name: 'Orange Juice', quantity: 16 },
+      { id: 'green-tea', name: 'Green Tea', quantity: 22 }
+    ]
+  },
+  {
+    id: 'bakery',
+    name: 'Bakery',
+    products: [
+      { id: 'bread', name: 'Bread', quantity: 14 },
+      { id: 'croissants', name: 'Croissants', quantity: 18 },
+      { id: 'bagels', name: 'Bagels', quantity: 12 }
+    ]
+  },
+  {
+    id: 'vegetables',
+    name: 'Vegetables',
+    products: [
+      { id: 'tomatoes', name: 'Tomatoes', quantity: 26 },
+      { id: 'carrots', name: 'Carrots', quantity: 32 },
+      { id: 'spinach', name: 'Spinach', quantity: 15 }
+    ]
+  },
+  {
+    id: 'meat-seafood',
+    name: 'Meat & Seafood',
+    products: [
+      { id: 'chicken-breast', name: 'Chicken Breast', quantity: 18 },
+      { id: 'ground-beef', name: 'Ground Beef', quantity: 12 },
+      { id: 'salmon-fillets', name: 'Salmon Fillets', quantity: 10 }
+    ]
+  },
+  {
+    id: 'frozen-foods',
+    name: 'Frozen Foods',
+    products: [
+      { id: 'frozen-peas', name: 'Frozen Peas', quantity: 20 },
+      { id: 'frozen-pizza', name: 'Frozen Pizza', quantity: 14 },
+      { id: 'ice-cream', name: 'Ice Cream', quantity: 9 }
+    ]
+  },
+  {
+    id: 'pantry-staples',
+    name: 'Pantry Staples',
+    products: [
+      { id: 'rice', name: 'Rice', quantity: 25 },
+      { id: 'pasta', name: 'Pasta', quantity: 28 },
+      { id: 'flour', name: 'Flour', quantity: 12 }
+    ]
+  },
+  {
+    id: 'snacks',
+    name: 'Snacks',
+    products: [
+      { id: 'potato-chips', name: 'Potato Chips', quantity: 30 },
+      { id: 'granola-bars', name: 'Granola Bars', quantity: 24 },
+      { id: 'mixed-nuts', name: 'Mixed Nuts', quantity: 16 }
+    ]
+  },
+  {
+    id: 'condiments-sauces',
+    name: 'Condiments & Sauces',
+    products: [
+      { id: 'ketchup', name: 'Ketchup', quantity: 18 },
+      { id: 'mayonnaise', name: 'Mayonnaise', quantity: 14 },
+      { id: 'soy-sauce', name: 'Soy Sauce', quantity: 12 }
+    ]
+  },
+  {
+    id: 'household-supplies',
+    name: 'Household Supplies',
+    products: [
+      { id: 'paper-towels', name: 'Paper Towels', quantity: 20 },
+      { id: 'trash-bags', name: 'Trash Bags', quantity: 18 },
+      { id: 'aluminum-foil', name: 'Aluminum Foil', quantity: 10 }
+    ]
+  },
+  {
+    id: 'cleaning-products',
+    name: 'Cleaning Products',
+    products: [
+      { id: 'dish-soap', name: 'Dish Soap', quantity: 16 },
+      { id: 'laundry-detergent', name: 'Laundry Detergent', quantity: 11 },
+      { id: 'surface-cleaner', name: 'Surface Cleaner', quantity: 13 }
+    ]
+  },
+  {
+    id: 'personal-care',
+    name: 'Personal Care',
+    products: [
+      { id: 'shampoo', name: 'Shampoo', quantity: 14 },
+      { id: 'toothpaste', name: 'Toothpaste', quantity: 20 },
+      { id: 'hand-soap', name: 'Hand Soap', quantity: 18 }
+    ]
+  },
+  {
+    id: 'office-supplies',
+    name: 'Office Supplies',
+    products: [
+      { id: 'printer-paper', name: 'Printer Paper', quantity: 10 },
+      { id: 'pens', name: 'Pens', quantity: 40 },
+      { id: 'sticky-notes', name: 'Sticky Notes', quantity: 24 }
+    ]
+  }
 ];
 
 function createCategory(name) {
@@ -51,18 +155,30 @@ function normalizeProduct(product) {
   };
 }
 
+function mergeDefaultProducts(savedProducts, defaultProducts = []) {
+  const normalizedSavedProducts = savedProducts.map(normalizeProduct);
+  const savedProductIds = new Set(
+    normalizedSavedProducts.map((product) => product.id)
+  );
+  const missingDefaultProducts = defaultProducts.filter(
+    (product) => !savedProductIds.has(product.id)
+  );
+
+  return [...normalizedSavedProducts, ...missingDefaultProducts];
+}
+
 function normalizeCategory(category) {
   const defaultCategory = defaultCategories.find(
     (item) => item.id === category.id
   );
-  const savedProducts = Array.isArray(category.products)
-    ? category.products.map(normalizeProduct)
-    : null;
+  const savedProducts = Array.isArray(category.products) ? category.products : null;
 
   return {
     id: category.id || crypto.randomUUID(),
     name: category.name || 'Unnamed category',
-    products: savedProducts ?? defaultCategory?.products ?? []
+    products: savedProducts
+      ? mergeDefaultProducts(savedProducts, defaultCategory?.products)
+      : defaultCategory?.products ?? []
   };
 }
 
@@ -356,27 +472,38 @@ export default function App() {
                     selectedCategoryId === category.id ? 'selected' : ''
                   }`}
                   key={category.id}
+                  onClick={() => selectCategory(category.id)}
+                  onKeyDown={(event) => {
+                    if (event.key === 'Enter' || event.key === ' ') {
+                      event.preventDefault();
+                      selectCategory(category.id);
+                    }
+                  }}
+                  role="button"
+                  tabIndex="0"
                 >
-                  <button
-                    type="button"
-                    className="category-select"
-                    onClick={() => selectCategory(category.id)}
-                  >
+                  <div className="category-select">
                     <strong>{category.name}</strong>
                     <span>{category.products.length} products</span>
-                  </button>
+                  </div>
                   <div className="item-actions">
                     <button
                       type="button"
                       className="secondary-button compact"
-                      onClick={() => startEditingCategory(category)}
+                      onClick={(event) => {
+                        event.stopPropagation();
+                        startEditingCategory(category);
+                      }}
                     >
                       Edit
                     </button>
                     <button
                       type="button"
                       className="danger-button compact"
-                      onClick={() => deleteCategory(category.id)}
+                      onClick={(event) => {
+                        event.stopPropagation();
+                        deleteCategory(category.id);
+                      }}
                     >
                       Delete
                     </button>
