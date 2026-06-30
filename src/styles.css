@@ -46,6 +46,11 @@ button {
   margin-bottom: 24px;
 }
 
+.summary-cards {
+  display: flex;
+  gap: 12px;
+}
+
 .eyebrow {
   color: #5a6872;
   font-size: 0.82rem;
@@ -113,7 +118,8 @@ h2 {
   padding: 22px;
 }
 
-.category-form {
+.category-form,
+.product-form {
   display: grid;
   gap: 12px;
 }
@@ -234,16 +240,103 @@ input:focus {
   padding: 14px;
 }
 
-.category-item h3 {
+.category-item.selected {
+  background: #edfdfb;
+  border-color: #79c8c0;
+}
+
+.category-select {
+  background: transparent;
+  border: 0;
+  color: inherit;
+  display: grid;
+  gap: 2px;
+  padding: 0;
+  text-align: left;
+}
+
+.category-select strong,
+.product-item h3 {
   color: #11181d;
   font-size: 1rem;
+  font-weight: 800;
+  line-height: 1.2;
   margin-bottom: 2px;
 }
 
-.category-item p {
+.category-select span,
+.product-item p {
   color: #60707b;
   font-size: 0.9rem;
   margin-bottom: 0;
+}
+
+.product-panel {
+  margin-top: 20px;
+}
+
+.product-layout {
+  align-items: start;
+  display: grid;
+  gap: 18px;
+  grid-template-columns: minmax(260px, 340px) 1fr;
+}
+
+.product-form {
+  background: #f8fafb;
+  border: 1px solid #e0e7ec;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.product-form h3 {
+  font-size: 1rem;
+  margin-bottom: 4px;
+}
+
+.product-list {
+  display: grid;
+  gap: 12px;
+}
+
+.product-item {
+  align-items: center;
+  background: #ffffff;
+  border: 1px solid #e0e7ec;
+  border-radius: 8px;
+  display: grid;
+  gap: 14px;
+  grid-template-columns: minmax(150px, 1fr) auto auto;
+  min-height: 78px;
+  padding: 14px;
+}
+
+.quantity-controls {
+  align-items: center;
+  display: grid;
+  gap: 8px;
+  grid-template-columns: 36px 44px 36px;
+}
+
+.quantity-controls span {
+  color: #182026;
+  font-weight: 800;
+  text-align: center;
+}
+
+.icon-button {
+  min-height: 36px;
+  padding: 0;
+}
+
+.empty-state {
+  background: #f8fafb;
+  border: 1px dashed #c8d3db;
+  border-radius: 8px;
+  color: #60707b;
+  font-weight: 700;
+  padding: 24px;
+  text-align: center;
 }
 
 @media (max-width: 760px) {
@@ -257,12 +350,25 @@ input:focus {
     flex-direction: column;
   }
 
+  .summary-cards {
+    flex-direction: column;
+  }
+
   .category-count {
     align-items: flex-start;
     min-width: 0;
   }
 
   .content-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .product-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .product-item {
+    align-items: stretch;
     grid-template-columns: 1fr;
   }
 
